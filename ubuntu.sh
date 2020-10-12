@@ -6,6 +6,8 @@ set e
 # basic requirements
 sudo apt upgrade
 sudo apt update
+sudo apt install gperf luajit luarocks libuv1-dev libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev libutf8proc-dev
+sudo apt install  make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # zsh
 sudo apt install zsh
@@ -26,11 +28,9 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | zsh
 nvm install node
 
 # neovim
-sudo apt install gperf luajit luarocks libuv1-dev libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermkey-dev libvterm-dev libutf8proc-dev
-sudo mv nvim.appimage /usr/local/bin/nvim
-
 wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
 chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -42,7 +42,9 @@ gvm use go1.5 [--default]
 
 # python
 curl https://pyenv.run | zsh
-pyenv uninstall 3.8.5
+pyenv install 3.8.5
+pyenv global 3.8.5
+
 
 # typescript
 npm install -g typescript
