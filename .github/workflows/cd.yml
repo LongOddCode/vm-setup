@@ -47,6 +47,8 @@ jobs:
 
                   echo "targetPackagePath=${targetPackagePath}" >> $GITHUB_ENV
                   echo "targetPackageVersion=${{ steps.tagName.outputs.tag }}" >> $GITHUB_ENV
+                  pwd
+                  ls
 
             - name: Setup node
               uses: actions/setup-node@v2.1.2
