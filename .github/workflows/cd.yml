@@ -28,11 +28,11 @@ jobs:
 
             - name: validate tag
               run: |
-                  if [ "${{ steps.tagName.outputs.path }}" == "" ]; then
+                  if [ -z "${{ steps.tagName.outputs.path }}" ]; then
                     echo "emply path"
                     exit;
                   fi;
-                  if [ -z "${{ steps.tagName.outputs.tag}}" == ""]; then
+                  if [ -z "${{ steps.tagName.outputs.tag}}" ]; then
                     echo "emply tag"
                     exit;
                   fi;
