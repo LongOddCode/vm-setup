@@ -7,7 +7,7 @@ on:
 
 jobs:
     integration-test:
-        name: Integration test on (${{ matrix.os }} with node ${{ matrix.node-version }})
+        name: Integration test on (${{ matrix.os }} node ${{ matrix.node-version }})
 
         strategy:
             matrix:
@@ -23,9 +23,9 @@ jobs:
             - name: GetTagName
               uses: olegtarasov/get-tag@v2.1
               with:
-                  tagRegex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
                   # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+                  tagRegex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
 
             - name: TestTag
               run: |
-                  echo $GIT_TAG_NAME
+                  echo ${{ steps.tagName.outputs.tag }}
