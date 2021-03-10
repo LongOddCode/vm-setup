@@ -40,6 +40,10 @@ jobs:
                   replace="/"
                   originalPath="${{ steps.tagName.outputs.path }}"
                   path=${originalPath//$find/$replace}
+
+                  if [ ! -d "$path" ]; then
+                    echo "path doesn't exist"
+                  fi;
                   echo $path
 
             - name: Setup node
