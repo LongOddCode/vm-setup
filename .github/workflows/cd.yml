@@ -38,15 +38,12 @@ jobs:
 
                   find="."
                   replace="/"
-                  originalPath="${{ steps.tagName.outputs.path }}"
-                  targetPath=${originalPath//$find/$replace}
+                  originalPath=${{ steps.tagName.outputs.path }}
+                  targetPackagePath=${originalPath//$find/$replace}
 
-                  if [ ! -d "$targetPath" ]; then
+                  if [ ! -d "$targetPackagePath" ]; then
                     echo "path doesn't exist"
                   fi;
-
-                  export targetPath
-                  echo "::set-env name=targetPath::$targetPath"
 
             - name: Setup node
               uses: actions/setup-node@v2.1.2
@@ -55,7 +52,7 @@ jobs:
 
             - name: link integrated package
               run: |
-                  echo $targetPath
+                  echo $targetPackagePath
 
             - name: run integration tests
               run: |
