@@ -28,5 +28,11 @@ jobs:
 
             - name: validate-tag
               run: |
-                  echo "path: ${{ steps.tagName.outputs.path }}"
-                  echo "version: ${{ steps.tagName.outputs.tag}}"
+                  if [ -z "${{ steps.tagName.outputs.path }}" ]; then
+                    echo "emply path"
+                    exit;
+                  fi;
+                  if [ -z "${{ steps.tagName.outputs.tag}}" ]; then
+                    echo "emply tag"
+                    exit;
+                  fi;
