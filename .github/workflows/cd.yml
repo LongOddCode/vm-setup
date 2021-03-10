@@ -26,7 +26,5 @@ jobs:
                   # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
                   tagRegex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
             - name: validate-tag
-              with:
-                  tagname: ${{ steps.tagName.outputs }}
               run: |
                   echo ${{ steps.tagName.outputs }}
