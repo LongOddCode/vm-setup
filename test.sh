@@ -1,0 +1,9 @@
+#!/bin/sh
+
+str="someFileName.foo"
+find="."
+replace="/"
+# notice the the str isn't prefixed with $
+#    this is just how this feature works :/
+result=${"someFileName.foo"//"."/"//"}
+echo $result
