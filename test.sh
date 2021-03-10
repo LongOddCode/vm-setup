@@ -5,5 +5,5 @@ find="."
 replace="/"
 # notice the the str isn't prefixed with $
 #    this is just how this feature works :/
-result=${"someFileName.foo"//"."/"//"}
+result=${str//$find/$replace}
 echo $result
