@@ -41,6 +41,8 @@ jobs:
                   originalPath="${{ steps.tagName.outputs.path }}"
                   path=${originalPath//$find/$replace}
 
+                  pwd
+
                   if [ ! -d "$path" ]; then
                     echo "path doesn't exist"
                   fi;
