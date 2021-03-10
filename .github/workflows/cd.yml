@@ -22,16 +22,10 @@ jobs:
 
             - name: get-tag
               uses: olegtarasov/get-tag@v2.1
-              #with:
-              #    # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
-              #    tagRegex:
-              #    tagRegexGroup: 5
+              with:
+                  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+                  tagRegex: '^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?<pre-release>?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+(?<path>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
 
             - name: validate-tag
-              shell: bash
               run: |
-                  echo $GIT_TAG_NAME
-                  re="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$"
-                  if [[ $GIT_TAG_NAME =~ $re ]]; 
-                    then echo ${BASH_REMATCH[5]};
-                  fi;
+                  echo ${{ steps.tagName.outputs }}
