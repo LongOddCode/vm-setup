@@ -38,7 +38,7 @@ jobs:
 
                   find="."
                   replace="/"
-                  path=${${{ steps.tagName.outputs.path }}//$find/$replace}
+                  path=${ "${{ steps.tagName.outputs.path }}"//$find/$replace }
                   echo $path
 
             - name: Setup node
