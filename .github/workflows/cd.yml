@@ -23,16 +23,34 @@ jobs:
             - id: tagName
               uses: olegtarasov/get-tag@v2.1
               with:
-                  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
                   tagRegex: '^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)))\+(?<path>.[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
 
-            - name: validate tag
+            - name: validation
               run: |
                   if [ -z "${{ steps.tagName.outputs.path }}" ]; then
                     echo "emply path"
                     exit;
                   fi;
-                  if [ -z "${{ steps.tagName.outputs.tag}}" ]; then
+                  if [ -z "${{ steps.tagName.outputs.tag }}" ]; then
                     echo "emply tag"
                     exit;
                   fi;
+                  path=${${{ steps.tagName.outputs.path }}//'.'/'\/'}
+                  echo $path
+
+            - name: Setup node
+              uses: actions/setup-node@v2.1.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: link integrated package
+              run: |
+                  echo ""
+
+            - name: run integration tests
+              run: |
+                  echo ""
+
+            - name: release new package
+              run: |
+                  echo ""
