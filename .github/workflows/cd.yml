@@ -1,0 +1,31 @@
+name: CD
+
+on:
+    push:
+        tags:
+            - "*"
+
+jobs:
+    integration-test:
+        name: Integration test on (${{ matrix.os }} with node ${{ matrix.node-version }})
+
+        strategy:
+            matrix:
+                os: [windows-latest]
+                node-version: [14]
+
+        runs-on: ${{ matrix.os }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: GetTagName
+              uses: olegtarasov/get-tag@v2.1
+              with:
+                  tagRegex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
+                  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+
+            - name: TestTag
+              run: |
+                  echo ${{ GIT_TAG_NAME }}
