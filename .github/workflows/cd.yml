@@ -45,7 +45,7 @@ jobs:
                     echo "path doesn't exist"
                   fi;
 
-                  echo 'targetPackagePath=$targetPackagePath' >> $GITHUB_ENV
+                  echo "targetPackagePath=${targetPackagePath}" >> $GITHUB_ENV
 
             - name: Setup node
               uses: actions/setup-node@v2.1.2
