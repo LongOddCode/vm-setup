@@ -45,6 +45,8 @@ jobs:
                     echo "path doesn't exist"
                   fi;
 
+                  echo 'targetPackagePath=$targetPackagePath' >> $GITHUB_ENV
+
             - name: Setup node
               uses: actions/setup-node@v2.1.2
               with:
@@ -52,7 +54,7 @@ jobs:
 
             - name: link integrated package
               run: |
-                  echo $targetPackagePath
+                  echo $GITHUB_ENV
 
             - name: run integration tests
               run: |

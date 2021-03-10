@@ -7,3 +7,5 @@ replace="/"
 #    this is just how this feature works :/
 result=${str//$find/$replace}
 echo $result
+
+echo "${str}"
