@@ -54,12 +54,22 @@ jobs:
                   node-version: ${{ matrix.node-version }}
 
             - name: link integrated package
+              working-directory: ${{ env.targetPackagePath}}
               run: |
-                  echo ${{ env.targetPackagePath}}
+                  targetPackageName=$(cat package.json \
+                    | grep name \
+                    | head -1 \
+                    | awk -F: '{ print $2 }' \
+                    | sed 's/[",]//g' \
+                    | tr -d '[[:space:]]')
+
+                  echo "targetPackageName=${targetPackageName}" >> $GITHUB_ENV
+                  npm install && npm link
 
             - name: run integration tests
+              working-directory: tests
               run: |
-                  echo ""
+                  npm link ${{ env.targetPackageName }}
 
             - name: release new package
               run: |

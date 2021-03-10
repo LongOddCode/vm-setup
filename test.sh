@@ -1,11 +1,10 @@
 #!/bin/sh
 
-str="someFileName.foo"
-find="."
-replace="/"
-# notice the the str isn't prefixed with $
-#    this is just how this feature works :/
-result=${str//$find/$replace}
-echo $result
+PACKAGE_VERSION=$(cat package.json \
+  | grep name \
+  | head -1 \
+  | awk -F: '{ print $2 }' \
+  | sed 's/[",]//g' \
+  | tr -d '[[:space:]]')
 
-echo "${str}"
+echo $PACKAGE_VERSION
