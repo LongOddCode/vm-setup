@@ -17,16 +17,20 @@ jobs:
         runs-on: ${{ matrix.os }}
 
         steps:
-            - name: Checkout
+            - name: checkout
               uses: actions/checkout@v2
 
-            - name: GetTagName
+            - name: get-tag
               uses: olegtarasov/get-tag@v2.1
               #with:
               #    # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
-              #    tagRegex: '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
+              #    tagRegex:
               #    tagRegexGroup: 5
 
-            - name: TestTag
+            - name: validate-tag
               run: |
                   echo $GIT_TAG_NAME
+                  re="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$"
+                  if [[ $name =~ $re ]]; 
+                    then echo ${BASH_REMATCH[5]};
+                  fi
