@@ -20,11 +20,12 @@ jobs:
             - name: checkout
               uses: actions/checkout@v2
 
-            - name: processTag
+            - id: tagName
               uses: olegtarasov/get-tag@v2.1
               with:
                   # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
-                  tagRegex: '^(?<package>0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
+                  tagRegex: '^(?<package>.0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
+
             - name: validate-tag
               run: |
-                  echo "${{ steps.processTag.outputs.package }}"
+                  echo "${{ steps.tagName.outputs.package }}"
