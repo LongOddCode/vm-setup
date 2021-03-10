@@ -28,4 +28,6 @@ jobs:
 
             - name: validate-tag
               run: |
-                  echo "${{ steps.tagName.outputs }}"
+                  echo "major: ${{ steps.tagName.outputs.major }}"
+                  echo "minor: ${{ steps.tagName.outputs.minor }}"
+                  echo "patch: ${{ steps.tagName.outputs.patch }}"
