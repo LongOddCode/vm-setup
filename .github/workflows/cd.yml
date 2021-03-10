@@ -26,13 +26,13 @@ jobs:
                   # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
                   tagRegex: '^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)))\+(?<path>.[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
 
-            - name: validate-tag
+            - name: validate tag
               run: |
-                  if [ -z "${{ steps.tagName.outputs.path }}" ]; then
+                  if [ "${{ steps.tagName.outputs.path }}" == "" ]; then
                     echo "emply path"
                     exit;
                   fi;
-                  if [ -z "${{ steps.tagName.outputs.tag}}" ]; then
+                  if [ -z "${{ steps.tagName.outputs.tag}}" == ""]; then
                     echo "emply tag"
                     exit;
                   fi;
