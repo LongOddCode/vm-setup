@@ -20,10 +20,9 @@ jobs:
             - name: checkout
               uses: actions/checkout@v2
 
-            - id: tagName
-              uses: olegtarasov/get-tag@v2.1
-              with:
-                  tagRegex: /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)(?:-(?<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<buildmetadata>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/gm
+            - name: semantic-versioning-tag
+              uses: LongOddCode/semantic-versioning-tag@0.1.0
+              id: tagName
 
             - name: validation and set params
               run: |
