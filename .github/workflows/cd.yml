@@ -29,50 +29,9 @@ jobs:
               run: |
                   if [ -z "${{ steps.tagName.outputs.path }}" ]; then
                     echo "emply path"
-                    exit;
+                    exit 1;
                   fi;
                   if [ -z "${{ steps.tagName.outputs.tag }}" ]; then
                     echo "emply tag"
-                    exit;
+                    exit 1;
                   fi;
-
-                  find="."
-                  replace="/"
-                  originalPath=${{ steps.tagName.outputs.path }}
-                  targetPackagePath=${originalPath//$find/$replace}
-
-                  if [ ! -d "$targetPackagePath" ]; then
-                    echo "path doesn't exist"
-                  fi;
-
-                  echo "targetPackagePath=${targetPackagePath}" >> $GITHUB_ENV
-                  echo "targetPackageVersion=${{ steps.tagName.outputs.tag }}" >> $GITHUB_ENV
-                  pwd
-                  ls
-
-            - name: Setup node
-              uses: actions/setup-node@v2.1.2
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: link integrated package
-              working-directory: ${{ env.targetPackagePath}}
-              run: |
-                  targetPackageName=$(cat package.json \
-                    | grep name \
-                    | head -1 \
-                    | awk -F: '{ print $2 }' \
-                    | sed 's/[",]//g' \
-                    | tr -d '[[:space:]]')
-
-                  echo "targetPackageName=${targetPackageName}" >> $GITHUB_ENV
-                  npm install && npm link
-
-            - name: run integration tests
-              working-directory: tests
-              run: |
-                  npm link ${{ env.targetPackageName }}
-
-            - name: release new package
-              run: |
-                  echo ""
