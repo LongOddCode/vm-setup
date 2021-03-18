@@ -23,15 +23,8 @@ jobs:
             - id: tagName
               uses: olegtarasov/get-tag@v2.1
               with:
-                  tagRegex: '^((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)))\+(?<path>.[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)$'
+                  tagRegex: "^(?<major>0|[1-9]d*).(?<minor>0|[1-9]d*).(?<patch>0|[1-9]d*)(?:-(?<prerelease>(?:0|[1-9]d*|d*[a-zA-Z-][0-9a-zA-Z-]*)(?:.(?:0|[1-9]d*|d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:+(?<buildmetadata>[0-9a-zA-Z-]+(?:.[0-9a-zA-Z-]+)*))?$"
 
             - name: validation and set params
               run: |
-                  if [ -z "${{ steps.tagName.outputs.path }}" ]; then
-                    echo "emply path"
-                    exit 1;
-                  fi;
-                  if [ -z "${{ steps.tagName.outputs.tag }}" ]; then
-                    echo "emply tag"
-                    exit 1;
-                  fi;
+                  echo "${{ steps.tagName.outputs":
