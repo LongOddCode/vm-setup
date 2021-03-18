@@ -27,4 +27,4 @@ jobs:
 
             - name: validation and set params
               run: |
-                  echo "${{ steps.tagName.outputs":
+                  echo "${{ steps.tagName.outputs}}":
