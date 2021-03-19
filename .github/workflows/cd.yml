@@ -21,7 +21,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: semantic-versioning-tag
-              uses: LongOddCode/semantic-versioning-tag@0.3.0
+              uses: LongOddCode/semantic-versioning-tag@0.4.0
               id: tagName
 
             - name: validation and set params
