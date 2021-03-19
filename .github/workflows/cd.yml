@@ -21,8 +21,9 @@ jobs:
               uses: actions/checkout@v2
 
             - id: svt
-              uses: LongOddCode/semantic-versioning-tag@0.6.0
+              uses: LongOddCode/semantic-versioning-tag@0.7.0
 
             - name: validation and set params
               run: |
+                  echo ${{ steps.svt.outputs }}
                   echo ${{ steps.svt.outputs.major }}
