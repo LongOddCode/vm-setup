@@ -24,11 +24,9 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | zsh
 nvm install node
 
 # neovim
-wget https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
-chmod u+x nvim.appimage
-sudo mv nvim.appimage /usr/local/bin/nvim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+sudo apt install neovim
+sudo apt install python-neovim
+sudo apt install python3-neovim
 
 # golang
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)

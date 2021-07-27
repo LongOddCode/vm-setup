@@ -1,0 +1,29 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "scss",
+        "all",
+        "markdown",
+        "md",
+        "javascript",
+        "graphql",
+        "html",
+        "yaml",
+        "yml",
+        "json",
+        "python",
+        "go",
+        "typescript",
+        "typescriptreact"
+    ],
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.rootPatterns": [
+        ".git",
+        ".hg",
+        ".projections.json",
+        "tsconfig.json"
+    ],
+    "eslint.autoFixOnSave": true,
+    "eslint.run": "onSave",
+    "typescript.format.semicolons": "insert"
+}
